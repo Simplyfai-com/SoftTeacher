@@ -15,11 +15,7 @@ data = dict(
             img_prefix="data/coco/train2017/",
         ),
     ),
-    sampler=dict(
-        train=dict(
-            sample_ratio=[1, 4],
-        )
-    ),
+    sampler=dict(train=dict(_delete_=True, type="GroupSampler")),
 )
 
 fold = 1

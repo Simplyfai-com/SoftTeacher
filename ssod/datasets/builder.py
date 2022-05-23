@@ -114,7 +114,7 @@ def collate(batch, samples_per_gpu=1, flatten=False):
                 )
             return DataContainer(
                 stacked, batch[0].stack, batch[0].padding_value, cpu_only=True
-            )
+            ).data[0]
         elif batch[0].stack:
             for i in range(0, len(batch), samples_per_gpu):
                 assert isinstance(batch[i].data, torch.Tensor)
@@ -155,7 +155,7 @@ def collate(batch, samples_per_gpu=1, flatten=False):
                 stacked.append(
                     [sample.data for sample in batch[i : i + samples_per_gpu]]
                 )
-        return DataContainer(stacked, batch[0].stack, batch[0].padding_value)
+        return DataContainer(stacked, batch[0].stack, batch[0].padding_value).data[0]
     elif any([isinstance(b, Sequence) for b in batch]):
         if flatten:
             flattened = []
