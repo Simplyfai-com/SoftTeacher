@@ -264,7 +264,7 @@ lr_config = dict(step=[120000, 160000])
 runner = dict(_delete_=True, type="IterBasedRunner", max_iters=18)
 checkpoint_config = dict(by_epoch=False, interval=4000, max_keep_ckpts=20)
 
-# fp16 = dict(loss_scale="dynamic")
+fp16 = dict(loss_scale="dynamic")
 
 log_config = dict(
     interval=50,

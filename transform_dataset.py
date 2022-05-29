@@ -4,7 +4,7 @@ import os
 import json
 
 ORIGIN_PATH = "./full_treadmill_pytorch_dataset"
-DESTINATION_PATH = "./SoftTeacher/data/coco/annotations"
+DESTINATION_PATH = "./data/coco/annotations"
 
 LICENCES = [
     {
