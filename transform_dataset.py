@@ -1,5 +1,3 @@
-from __future__ import annotations
-from cmath import log
 import os
 import json
 
@@ -61,6 +59,7 @@ def main():
             for image in os.listdir(path)
         ]
         annotations = []
+        images_info = []
         for image in images:
             image_id = image.get("id")
             with open(
@@ -78,16 +77,24 @@ def main():
                         "category_id": 1,
                         "width": width,
                         "height": height,
+                        "area" : width * height,
+                        "iscrowd" : 0,
                         "bbox": image_annotations.get("bboxes", [])[0],
                     }
                 )
-
                 annotations.append(image_annotations)
+                images_info.append({
+                    "id" : image_id,
+                    "licence" : 1,
+                    "file_name" : image.get("file_name"),
+                    "width": width,
+                    "height": height,
+                })
 
         annotations = {
             "licenses": LICENCES,
             "categories": CATEGORIES,
-            "images": images,
+            "images": images_info,
             "annotations": annotations,
         }
         out_path = f"{DESTINATION_PATH}/instances_{folder}2017.json"

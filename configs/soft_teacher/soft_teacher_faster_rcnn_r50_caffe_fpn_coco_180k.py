@@ -2,7 +2,7 @@ _base_ = "base.py"
 
 data = dict(
     samples_per_gpu=5,
-    workers_per_gpu=5,
+    workers_per_gpu=1,
     train=dict(
         sup=dict(
             type="CocoDataset",
@@ -17,7 +17,8 @@ data = dict(
     ),
     sampler=dict(
         train=dict(
-            sample_ratio=[1, 4],
+            _delete_=True,
+            type="GroupSampler"
         )
     ),
 )
