@@ -24,9 +24,9 @@ download() {
 }
 conduct() {
   OFFSET=$RANDOM
-  for percent in 1; do
+  for percent in 1 10; do
       for fold in 1 2 3 4 5; do
-          python tools/dataset/semi_coco.py --percent ${percent} --seed ${fold} --data-dir "${data_root}"/coco --seed-offset ${OFFSET}
+          /home/ubuntu/.cache/pypoetry/virtualenvs/softteacher-6pBIYm56-py3.6/bin/python tools/dataset/semi_coco.py --percent ${percent} --seed ${fold} --data-dir "${data_root}"/coco --seed-offset ${OFFSET}
       done
   done
 }
