@@ -1,10 +1,8 @@
-_base_ = "base.py"
-fold = 1
-percent = 10
+_base_ = "base_org.py"
 classes = ("box",)
 data = dict(
     samples_per_gpu=5,
-    workers_per_gpu=1,
+    workers_per_gpu=5,
     train=dict(
         sup=dict(
             type="CocoDataset",
@@ -21,35 +19,14 @@ data = dict(
     ),
     sampler=dict(train=dict(_delete_=True, type="GroupSampler")),
 )
-
-model = dict(
-    rpn_head=dict(
-        anchor_generator=dict(
-            scales=[
-                13.770410151757826,
-                15.964492326546731,
-                18.727237019627474,
-                19.836958197941414,
-                22.108723664209517,
-            ],
-            ratios=[
-                0.692972000449792,
-                0.9578803670273774,
-                1.0816754348833928,
-                1.3359649417858739,
-                1.5288758535865943,
-            ],
-            strides=[4, 8, 16, 32, 64],
-        )
-    ),
-    roi_head=dict(
-        bbox_head=dict(
-            num_classes=1,
-        )
-    ),
-)
-
+evaluation = dict(interval=25000)
+optimizer = dict(type="SGD", lr=0.01, momentum=0.9, weight_decay=0.0001)
+lr_config = dict(step=[500, 750])
 runner = dict(_delete_=True, type="IterBasedRunner", max_iters=1000)
+checkpoint_config = dict(by_epoch=False, interval=250, max_keep_ckpts=20)
+fold = 1
+percent = 1
+
 work_dir = "work_dirs/${cfg_name}/${percent}/${fold}"
 log_config = dict(
     interval=50,

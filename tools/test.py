@@ -215,7 +215,7 @@ def main():
         model.CLASSES = checkpoint["meta"]["CLASSES"]
     else:
         model.CLASSES = dataset.CLASSES
-
+    print(f"Classes: {model.CLASSES}")
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
         outputs = single_gpu_test(

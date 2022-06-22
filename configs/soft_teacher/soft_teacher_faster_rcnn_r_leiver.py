@@ -1,9 +1,9 @@
 _base_ = "base.py"
 fold = 1
 percent = 10
-classes = ("box",)
+classes=('box',)  # <- this is for custom dataset
 data = dict(
-    samples_per_gpu=5,
+    samples_per_gpu=3,
     workers_per_gpu=1,
     train=dict(
         sup=dict(
@@ -19,18 +19,23 @@ data = dict(
             img_prefix="data/coco/train2017/",
         ),
     ),
-    sampler=dict(train=dict(_delete_=True, type="GroupSampler")),
+    sampler=dict(
+        train=dict(
+            _delete_=True, 
+            type="GroupSampler"
+        )
+    ),
 )
 
 model = dict(
     rpn_head=dict(
         anchor_generator=dict(
             scales=[
-                13.770410151757826,
-                15.964492326546731,
-                18.727237019627474,
-                19.836958197941414,
-                22.108723664209517,
+                3.356991467896006,
+                4.532190435442829,
+                5.703727111923104,
+                7.860589377289129,
+                10.558823804356944,
             ],
             ratios=[
                 0.692972000449792,
@@ -48,8 +53,8 @@ model = dict(
         )
     ),
 )
-
-runner = dict(_delete_=True, type="IterBasedRunner", max_iters=1000)
+# lr_config = dict(step=[120000, 160000])
+# runner = dict(_delete_=True, type="IterBasedRunner", max_iters=180000)
 work_dir = "work_dirs/${cfg_name}/${percent}/${fold}"
 log_config = dict(
     interval=50,

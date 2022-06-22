@@ -27,7 +27,7 @@ train_pipeline = [
         transforms=[
             dict(
                 type="RandResize",
-                img_scale=[(1333, 400), (1333, 1200)],
+                img_scale=[(924, 1238), (924, 1238)],
                 multiscale_mode="range",
                 keep_ratio=True,
             ),
@@ -57,7 +57,7 @@ test_pipeline = [
     dict(type="LoadImageFromFile"),
     dict(
         type="MultiScaleFlipAug",
-        img_scale=(1333, 800),
+        img_scale=(924, 1238),
         flip=False,
         transforms=[
             dict(type="Resize", keep_ratio=True),

@@ -94,7 +94,7 @@ def main():
     args = parse_args()
 
     cfg = Config.fromfile(args.config)
-    cfg.merge_from_dict({"fold" : 1, "percent" : 1})
+    # cfg.merge_from_dict({"fold" : 1, "percent" : 1})
     if args.cfg_options is not None:
         cfg.merge_from_dict(args.cfg_options)
     # import modules from string list.
