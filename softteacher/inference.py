@@ -1,8 +1,8 @@
 from mmcv import Config
 from mmdet.apis import async_inference_detector, inference_detector
 
-from ssod.apis.inference import init_detector
-from ssod.utils import patch_config
+from .ssod.apis.inference import init_detector
+from .ssod.utils import patch_config
 
 
 async def async_inference(config, checkpoint, device, imgs):

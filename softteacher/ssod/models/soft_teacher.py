@@ -3,8 +3,8 @@ from mmcv.runner.fp16_utils import force_fp32
 from mmdet.core import bbox2roi, multi_apply
 from mmdet.models import DETECTORS, build_detector
 
-from ssod.utils.structure_utils import dict_split, weighted_loss
-from ssod.utils import log_image_with_boxes, log_every_n
+from softteacher.ssod.utils.structure_utils import dict_split, weighted_loss
+from softteacher.ssod.utils import log_image_with_boxes, log_every_n
 
 from .multi_stream_detector import MultiSteamDetector
 from .utils import Transform2D, filter_invalid

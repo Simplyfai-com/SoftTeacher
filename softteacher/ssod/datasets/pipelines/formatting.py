@@ -2,7 +2,7 @@ import numpy as np
 from mmdet.datasets import PIPELINES
 from mmdet.datasets.pipelines.formating import Collect
 
-from ssod.core import TrimapMasks
+from softteacher.ssod.core import TrimapMasks
 
 
 @PIPELINES.register_module()

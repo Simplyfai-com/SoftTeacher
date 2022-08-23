@@ -18,9 +18,9 @@ from mmcv.utils import build_from_cfg
 from mmdet.core import EvalHook
 from mmdet.datasets import build_dataset, replace_ImageToTensor
 
-from ssod.datasets import build_dataloader
-from ssod.utils import find_latest_checkpoint, get_root_logger, patch_runner
-from ssod.utils.hooks import DistEvalHook
+from softteacher.ssod.datasets import build_dataloader
+from softteacher.ssod.utils import find_latest_checkpoint, get_root_logger, patch_runner
+from softteacher.ssod.utils.hooks import DistEvalHook
 
 
 def set_random_seed(seed, deterministic=False):
@@ -93,7 +93,7 @@ def train_detector(
             find_unused_parameters=find_unused_parameters,
         )
     else:
-       model = MMDataParallel(model.cuda(cfg.gpu_ids[0]), device_ids=cfg.gpu_ids)
+        model = MMDataParallel(model.cuda(cfg.gpu_ids[0]), device_ids=cfg.gpu_ids)
 
     # build runner
     optimizer = build_optimizer(model, cfg.optimizer)
